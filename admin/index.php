@@ -1,4 +1,11 @@
-<?php include('config.php'); ?>
+<?php include('../config.php'); ?>
+<?php
+session_start();
+if (!isset($_SESSION['kasutaja'])) {
+    header('Location: login.php');
+    exit;
+    }
+?>
 <!doctype html>
 <html lang="et">
   <head>
@@ -53,6 +60,7 @@
                 <th>Asukoht</th>
                 <th>Keskmine hinne</th>
                 <th>Hinnatud (korda)</th>
+                <th>Muuda/Kustuta</th>
             </tr>
         <?php
         //sikutame andmebaasist kõik vastuse
@@ -65,6 +73,8 @@
                 <td><?php echo $rida['asukoht']; ?></td>
                 <td><?php echo $rida['keskmine_hinne']; ?></td>
                 <td><?php echo $rida['hinnatud']; ?></td>
+                <td><a href="muuda.php?id=666" class="btn btn-primary">Muuda</a></td>
+                <td><a href="kustuta.php?id=666" class="btn btn-primary">Kustuta</a></td>
             </tr>
             <?php
                 }
