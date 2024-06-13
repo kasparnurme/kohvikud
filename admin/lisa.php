@@ -6,26 +6,21 @@ if (!isset($_SESSION['kasutaja'])) {
     exit;
 }
 
-$paring = "SELECT * FROM toidukohad WHERE id=".$_GET['id'] ;
-$valjund = mysqli_query($yhendus, $paring);
-$rida = mysqli_fetch_assoc($valjund);
-// print_r($rida);
 
 
-if (isset($_GET['id']) && !empty($_GET['address'])) {
 
-$paring = "UPDATE toidukohad SET nimi='".$_GET['nimi']."', asukoht='".$_GET['address']."' WHERE id =".$_GET['id'] ;
+if (isset($_GET['nimi']) && isset($_GET['address'])) {
+$paring = "INSERT INTO toidukohad (nimi, asukoht) VALUES ('".$_GET['nimi']."', '".$_GET['address']."')" ;
 print_r($paring);
 $valjund = mysqli_query($yhendus, $paring);
 if ($valjund) {
     header("Location: index.php");
-//     echo "Kustutamine õnnestus";
-//     header('Location: index.php');
+
 }
 }
 ?>
 
-!<!doctype html>
+<!doctype html>
 <html lang="et">
     <head>
         <title>Title</title>
@@ -47,12 +42,11 @@ if ($valjund) {
 
     <body>
       <div class="container">
-        <h1>Kohviku muutmine</h1>
+        <h1>Kohviku lisamine</h1>
         <form action="" method="get">
-            <input type="text" hidden name="id" id="" value="<?php echo $rida['id']; ?>"><br>
-            Kohviku nimi: <input type="text" name="nimi" id="" value="<?php echo $rida['nimi']; ?>"><br>
-            Kohviku address: <input type="text" name="address" id="" value="<?php echo $rida['asukoht']; ?>"><br>
-            <input type="submit" value="Muuda">
+            Kohviku nimi: <input type="text" name="nimi" id="" value=""><br>
+            Kohviku address: <input type="text" name="address" id="" value=""><br>
+            <input type="submit" value="Lisa">
         </form>
       </div>
         <script

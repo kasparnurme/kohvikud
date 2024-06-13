@@ -52,7 +52,10 @@ if (!isset($_SESSION['kasutaja'])) {
             <form action="" method="get">
                 <input type="text" name="s">
                 <input type="submit" value="Otsi" class="btn btn-success">
+                <a class="btn btn-warning" name="logout" href="lisa.php">Lisa</a>
+                <a class="btn btn-danger" name="logout" href="logout.php">Logi välja</a>
             </form>
+            
         </div>
         <table class="table table-sm">
             <tr>
@@ -73,8 +76,8 @@ if (!isset($_SESSION['kasutaja'])) {
                 <td><?php echo $rida['asukoht']; ?></td>
                 <td><?php echo $rida['keskmine_hinne']; ?></td>
                 <td><?php echo $rida['hinnatud']; ?></td>
-                <td><a href="muuda.php?id=666" class="btn btn-primary">Muuda</a></td>
-                <td><a href="kustuta.php?id=666" class="btn btn-primary">Kustuta</a></td>
+                <td><a href="muuda.php?id=<?php echo $rida['id']; ?>" class="btn btn-primary">Muuda</a></td>
+                <td><a href="kustuta.php?id=<?php echo $rida['id']; ?>" class="btn btn-primary">Kustuta</a></td>
             </tr>
             <?php
                 }
